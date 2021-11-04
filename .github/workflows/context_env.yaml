@@ -10,5 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-      echo "ths is env=${{ env.env_1 }}"
+      - run: echo "ths is env=${{ env.env_1 }}"
+
+# https://zenn.dev/hashito/articles/aef4de448f341b
