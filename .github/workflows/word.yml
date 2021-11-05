@@ -2,6 +2,9 @@ name: Word
 
 on: push
 
+env:
+  inputs: *.md
+
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-18.04
@@ -10,11 +13,11 @@ jobs:
       - name: create file list
         id: files_list
         run: |
-          mkdir output  # create output dir
-          echo "::set-output name=files::$(printf '"%s" ' *.md)" # this will also include README.md
+          mkdir output # create output dir
+          echo "inputs=${{ env.inputs }}"
       - uses: docker://pandoc/core:2.9
         with:
-          args: --output=output/result.docx ${{ steps.files_list.outputs.files }}
+          args: --output=output/result.docx ${{ env.inputs }}
       - uses: actions/upload-artifact@master
         with:
           name: output
