@@ -1,4 +1,3 @@
 output-file: output/result.docx
 input-files:
-- 1.md
-- 2.md
+  - '*.md'
