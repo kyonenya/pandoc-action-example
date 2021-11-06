@@ -2,6 +2,9 @@ name: Advanced Usage
 
 on: push
 
+env:
+  output_path: "*.md"
+
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-18.04
@@ -10,8 +13,8 @@ jobs:
       - name: create file list
         id: files_list
         run: |
-          mkdir output  # create output dir
-          echo "::set-output name=files::$(printf '"%s" ' *.md)" # this will also include README.md
+          mkdir output
+          echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
       - uses: docker://pandoc/latex:2.9
         with:
           args: --output=output/result.pdf ${{ steps.files_list.outputs.files }}

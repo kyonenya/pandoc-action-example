@@ -9,16 +9,16 @@ jobs:
   convert_via_pandoc:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - name: create file list
-        id: files_list
-        run: |
-          mkdir output # create output dir
-          echo "defaults=${{ env.defaults }}"
+      # - uses: actions/checkout@v2
+      # - name: create file list
+      #   id: files_list
+      #   run: |
+      #     mkdir output # create output dir
+      #     echo "defaults=${{ env.defaults }}"
       - uses: docker://pandoc/core:2.9
         with:
           args: -d ${{ env.defaults }}
       - uses: actions/upload-artifact@master
         with:
-          name: output
-          path: output
+          name: result
+          path: result.docx

@@ -1,4 +1,4 @@
-output-file: output/result.docx
+output-file: result.docx
 input-files:
   - 1.md
   - 2.md
