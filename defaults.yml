@@ -1,4 +1,5 @@
 output-file: result.docx
 input-files:
-  - 1.md
-  - 2.md
+  - 0.md
+  - 3.md
+reference-doc: reference.docx
