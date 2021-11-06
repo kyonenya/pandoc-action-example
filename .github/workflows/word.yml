@@ -3,7 +3,7 @@ name: Word
 on: push
 
 env:
-  inputs: '*.md'
+  inputs: '1.md'
 
 jobs:
   convert_via_pandoc:
