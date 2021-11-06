@@ -15,9 +15,9 @@ jobs:
         run: |
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
-      - uses: docker://pandoc/latex:2.9
+      - uses: docker://pandoc/core:2.9
         with:
-          args: --output=output/result.pdf ${{ steps.files_list.outputs.files }}
+          args: --output=output/result.docx ${{ steps.files_list.outputs.files }}
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
