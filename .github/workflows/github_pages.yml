@@ -10,9 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: create file list
-        id: files_list
-        run: |
+      - run: |
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
       - uses: docker://pandoc/core:2.9
