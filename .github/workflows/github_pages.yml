@@ -11,12 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create file list
+        id: create_file_list
         run: |
             mkdir output
             echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
       - uses: docker://pandoc/core:2.9
         with:
-          args: --output=output/result.docx ${{ steps.files_list.outputs.files }}
+          args: --output=output/result.docx ${{ steps.create_file_list.outputs.files }}
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
