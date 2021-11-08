@@ -7,7 +7,8 @@ on:
 
 env:
   src_path: "[[:digit:]]*.md"
-  dist_filename: "index.docx"
+  dist_filename: index.docx
+  reference_filename: reference.docx
 
 jobs:
   convert_via_pandoc:
@@ -22,6 +23,7 @@ jobs:
         with:
           args: >-
             --output=dist/${{env.dist_filename}}
+            --reference-doc=${{env.reference_filename}}
             ${{ steps.create_file_list.outputs.files }}
       - uses: peaceiris/actions-gh-pages@v3
         with:
