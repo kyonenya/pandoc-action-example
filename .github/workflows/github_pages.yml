@@ -10,16 +10,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: create file list
-        id: files_list
-        run: |
-          mkdir output
-          echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
-      - uses: docker://pandoc/core:2.9
+      - run: |
+        mkdir output
+        echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
+      - uses: docker://pandoc/core:latest
         with:
           args: --output=output/result.docx ${{ steps.files_list.outputs.files }}
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
+          publish_dir: output
