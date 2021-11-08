@@ -3,23 +3,21 @@ name: GitHub Pages
 on: push
 
 env:
-  output_path: "*.md"
+  input_path: "*.md"
 
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create file list
-        id: create_file_list
+      - id: create_file_list
         run: |
-            mkdir output
-            echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
+            mkdir dist
+            echo "::set-output name=files::$(printf '"%s" ' ${{ env.input_path }})"
       - uses: docker://pandoc/core:latest
         with:
-          args: --output=output/result.docx printf '"%s" ' ${{ env.output_path }}
-      - name: Deploy pages
-        uses: peaceiris/actions-gh-pages@v3
+          args: --output=dist/result.docx ${{ steps.create_file_list.outputs.files }}
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: output
+          publish_dir: dist
