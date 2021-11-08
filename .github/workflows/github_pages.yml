@@ -19,7 +19,9 @@ jobs:
             mkdir dist
       - uses: docker://pandoc/core:latest
         with:
-          args: --output=dist/result.docx ${{ steps.create_file_list.outputs.files }}
+          args: >-
+            --output=dist/result.docx
+            ${{ steps.create_file_list.outputs.files }}
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
