@@ -3,7 +3,7 @@ name: GitHub Pages
 on: push
 
 env:
-  input_path: "[![:digit:]]*.md"
+  input_path: "[:digit:]*.md"
 
 jobs:
   convert_via_pandoc:
