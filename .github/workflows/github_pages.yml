@@ -1,9 +1,11 @@
 name: GitHub Pages
 
 on: push
+  branches:
+    - master
 
 env:
-  input_path: "[:digit:]*.md"
+  input_path: "[[:digit:]]*.md"
 
 jobs:
   convert_via_pandoc:
