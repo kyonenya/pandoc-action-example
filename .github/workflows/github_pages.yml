@@ -13,7 +13,7 @@ jobs:
       - run: |
           mkdir output
           echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
-      - uses: docker://pandoc/core:2.16
+      - uses: docker://pandoc/core:2.9
         with:
           args: --output=output/result.docx ${{ steps.files_list.outputs.files }}
       - name: Deploy pages
