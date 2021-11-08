@@ -17,7 +17,7 @@ jobs:
             echo "::set-output name=files::$(printf '"%s" ' ${{ env.output_path }})"
       - uses: docker://pandoc/core:latest
         with:
-          args: --output=output/result.docx $(printf '"%s" ' ${{ env.output_path }})
+          args: --output=output/result.docx (printf '"%s" ' ${{ env.output_path }})
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3
         with:
