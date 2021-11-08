@@ -1,8 +1,9 @@
 name: GitHub Pages
 
-on: push
-  branches:
-    - master
+on: 
+  push:
+    branches:
+      - master
 
 env:
   input_path: "[[:digit:]]*.md"
