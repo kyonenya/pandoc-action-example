@@ -6,7 +6,8 @@ on:
       - master
 
 env:
-  input_path: "[[:digit:]]*.md"
+  src_path: "[[:digit:]]*.md"
+  dist_filename: "index.docx"
 
 jobs:
   convert_via_pandoc:
@@ -15,12 +16,12 @@ jobs:
       - uses: actions/checkout@v2
       - id: create_file_list
         run: |
-            echo "::set-output name=files::$(printf '"%s" ' ${{ env.input_path }})"
+            echo "::set-output name=files::$(printf '"%s" ' ${{ env.src_path }})"
             mkdir dist
       - uses: docker://pandoc/core:latest
         with:
           args: >-
-            --output=dist/result.docx
+            --output=dist/${{env.dist_filename}}
             ${{ steps.create_file_list.outputs.files }}
       - uses: peaceiris/actions-gh-pages@v3
         with:
