@@ -3,7 +3,7 @@ name: GitHub Pages
 on: push
 
 env:
-  input_path: "*.md"
+  input_path: "[![:digit:]]*.md"
 
 jobs:
   convert_via_pandoc:
@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - id: create_file_list
         run: |
-            mkdir dist
             echo "::set-output name=files::$(printf '"%s" ' ${{ env.input_path }})"
+            mkdir dist
       - uses: docker://pandoc/core:latest
         with:
           args: --output=dist/result.docx ${{ steps.create_file_list.outputs.files }}
