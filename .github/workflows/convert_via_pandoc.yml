@@ -7,7 +7,6 @@ on:
 
 env:
   src_path: "[[:digit:]]*.md"
-  dist_file: index.docx
   reference_file: reference.docx
 
 jobs:
@@ -17,20 +16,18 @@ jobs:
       - uses: actions/checkout@v2
       - id: set_variables
         run: |
-            # src_files: expand path pattern with whitespace
-            echo "::set-output name=src_files::$(printf '"%s" ' ${{ env.src_path }})"
-            # dist_branch: <branchname>_pandoc
-            echo "::set-output name=dist_branch::${GITHUB_REF#refs/heads/}_pandoc"
+            echo "::set-output name=src_files::$(printf '"%s" ' ${{ env.src_path }})" # expand path pattern with whitespace
+            echo "::set-output name=current_branch::${GITHUB_REF#refs/heads/}"
             mkdir dist
       - uses: docker://pandoc/core:latest
         with:
           args: >-
-            --output=dist/${{ env.dist_file }}
+            --output=dist/${{ github.event.repository.name }}
             --reference-doc=${{ env.reference_file }}
             ${{ steps.set_variables.outputs.src_files }}
       - uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
-          BRANCH: ${{ steps.set_variables.outputs.dist_branch }}
+          BRANCH: ${{ steps.set_variables.outputs.current_branch }}_pandoc
           FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
