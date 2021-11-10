@@ -36,6 +36,6 @@ jobs:
       - uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
-          BRANCH: pandoc
+          BRANCH: ${GITHUB_REF#refs/heads/}_pandoc
           FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
