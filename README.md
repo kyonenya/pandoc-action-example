@@ -34,6 +34,6 @@
 ## MEMO
 
 - パスパラメータの文字列（`*.md`など）はそのままpandocに渡しても解釈されない。これは、globパターンはまずUnixシェルでファイルリスト（1.md 2-1.md ...）へと展開された後にpandocに渡される仕様であるため。このため、まずパターンをファイルリストに展開して、それを`set-output`コマンドで後のワークフローに持ち越している。
-　　- [GithubActionsで環境変数を理解する。 - Zenn](https://zenn.dev/hashito/articles/aef4de448f341b)
-　　- [Concatenate multiple Markdown files using Pandoc on Windows - Stack Overflow](https://stackoverflow.com/questions/49978926/concatenate-multiple-markdown-files-using-pandoc-on-windows)
-　　　　- "On Unix-like shells (like bash, for which your script is written) glob expansion (e.g. turning \*.md into file1.md file2.md file3.md) is performed by the shell, not the application you're running."
+  - [GithubActionsで環境変数を理解する。 - Zenn](https://zenn.dev/hashito/articles/aef4de448f341b)
+  - [Concatenate multiple Markdown files using Pandoc on Windows - Stack Overflow](https://stackoverflow.com/questions/49978926/concatenate-multiple-markdown-files-using-pandoc-on-windows)
+    - "On Unix-like shells (like bash, for which your script is written) glob expansion (e.g. turning \*.md into file1.md file2.md file3.md) is performed by the shell, not the application you're running."

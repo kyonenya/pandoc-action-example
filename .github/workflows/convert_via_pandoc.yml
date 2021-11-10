@@ -22,7 +22,7 @@ jobs:
       - uses: docker://pandoc/core:latest
         with:
           args: >-
-            --output=dist/${{ github.event.repository.name }}
+            --output=dist/${{ github.event.repository.name }}.docx
             --reference-doc=${{ env.reference_file }}
             ${{ steps.set_variables.outputs.src_files }}
       - uses: s0/git-publish-subdir-action@master
