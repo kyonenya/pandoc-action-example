@@ -7,27 +7,28 @@ on:
 
 env:
   src_path: "[[:digit:]]*.md"
-  dist_filename: index.docx
-  reference_filename: reference.docx
+  dist_file: index.docx
+  reference_file: reference.docx
 
 jobs:
   convert_via_pandoc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - id: create_file_list
+      - id: set_variables
         run: |
-            echo "::set-output name=files::$(printf '"%s" ' ${{ env.src_path }})"
+            echo "::set-output name=src_files::$(printf '"%s" ' ${{ env.src_path }})"
+            echo "::set-output name=dist_branch::$(printf '"%s" ' ${GITHUB_REF#refs/heads/}_pandoc"
             mkdir dist
       - uses: docker://pandoc/core:latest
         with:
           args: >-
-            --output=dist/${{env.dist_filename}}
-            --reference-doc=${{env.reference_filename}}
-            ${{ steps.create_file_list.outputs.files }}
+            --output=dist/${{env.dist_file}}
+            --reference-doc=${{env.reference_file}}
+            ${{ steps.set_variables.outputs.src_files }}
       - uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
-          BRANCH: ${GITHUB_REF#refs/heads/}_pandoc
+          BRANCH: ${{ steps.set_variables.outputs.dist_branch }}
           FOLDER: dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
