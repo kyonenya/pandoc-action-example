@@ -33,9 +33,3 @@ jobs:
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: s0/git-publish-subdir-action@master
-        env:
-          REPO: self
-          BRANCH: pandoc
-          FOLDER: dist
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
