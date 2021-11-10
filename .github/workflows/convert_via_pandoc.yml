@@ -17,7 +17,9 @@ jobs:
       - uses: actions/checkout@v2
       - id: set_variables
         run: |
-            echo "::set-output name=src_files::$(printf '"%s" ' ${{ env.src_path }})" # expand path pattern with whitespace
+            # src_files: expand path pattern with whitespace
+            echo "::set-output name=src_files::$(printf '"%s" ' ${{ env.src_path }})"
+            # dist_branch: <branchname>_pandoc
             echo "::set-output name=dist_branch::${GITHUB_REF#refs/heads/}_pandoc"
             mkdir dist
       - uses: docker://pandoc/core:latest
