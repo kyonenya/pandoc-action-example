@@ -30,7 +30,8 @@
 ## 参考
 
 - [pandoc/pandoc-action-example - GitHub](https://github.com/pandoc/pandoc-action-example)
-- [GitHub Actions で論文 PDF を生成・配信する - Zenn](https://zenn.dev/junkato/articles/github-actions-to-generate-pdfs-for-pages)
+- [GitHub Actionsで論文PDFを生成・配信する - Zenn](https://zenn.dev/junkato/articles/github-actions-to-generate-pdfs-for-pages)
+- [GitHub Actions, ビルド結果を別ブランチにpushする - えやみぐさ](https://blog.aoirint.com/entry/2020/github_actions_push_build_results/)
 - [(Pandoc) PandocのWordテンプレートはテンプレート出力よりも通常のファイル出力結果を使った方が良い。 - niszetの日記](https://niszet.hatenablog.com/entry/2020/01/03/080000)
 
 ## MEMO
